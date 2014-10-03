@@ -3,7 +3,7 @@
 
 The early stages of a budgeting site writing with Django.
 
-**NB**./ Development is taking placing in Python 3, not currently tested under Python 2.
+**NB.** Development is taking placing in Python 3, not currently tested under Python 2.
 
 TO DO
 -------------------------

@@ -53,6 +53,8 @@ ROOT_URLCONF = 'budget_site.urls'
 
 WSGI_APPLICATION = 'budget_site.wsgi.application'
 
+# Base site templates
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
