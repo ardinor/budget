@@ -69,7 +69,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-gb'
 
-TIME_ZONE = 'AEST'
+TIME_ZONE = 'Australia/Brisbane'
 
 USE_I18N = True
 
