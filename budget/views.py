@@ -15,6 +15,12 @@ def transaction_detail(request, transaction_id):
     return render(request, 'budget/transaction_detail.html',
         {'transaction': transaction})
 
+def transaction_new(request):
+
+    transaction =
+    return render(request, 'budget/transaction_detail.html',
+        {'transaction': transaction})
+
 def account_list(request):
     return render(request, 'budget/account_list.html')
 
