@@ -9,6 +9,7 @@ TO DO
 -------------------------
 - Think of a better name.
 - Add balance transfers, e.g., when you transfer money to savings, automatically create a credit on your savings account when the debit on the transaction account is made.
+- Add recurring debits/transactions? Maybe add a check, to say you've ensured that transaction took place for that amount e.g., you actually received your salary of $xxx.xx and you didn't get $yyy.yy which would throw out the calculations.
 
 REQUIREMENTS
 -------------------------

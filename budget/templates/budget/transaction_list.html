@@ -1,0 +1,7 @@
+{% if latest_transactions %}
+    {% for transaction in latest_transactions %}
+        <p><a href="{% url 'budget:transaction_detail' transaction.id %}">{{ transaction.get_type_display }} of {{ transaction.amount }} on {{ transaction.date }} for {{ transaction.reason }}</a></p>
+    {% endfor %}
+{% else %}
+    <p>No transactions yet!</p>
+{% endif %}
