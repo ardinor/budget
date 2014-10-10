@@ -1,6 +1,33 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'budget:new'}" method="post">
+<form action="{% url 'budget:transaction_save' %}" method="post">
     {% csrf_token %}
+    <input name="trans_date" id="trans_date" type="text">
+    <label for="trans_date">Date</label>
+
+    <input type="radio" name="trans_type" id="type_db" value="DB" />
+    <label for="type_db">Debit</label>
+    <input type="radio" name="trans_type" id="type_cr" value="CR" />
+    <label for="type_cr">Credit</label>
+
+    <input name="trans_amount" id="trans_amount" type="text">
+    <label for="trans_amount">Amount</label>
+
+    <select id="trans_desc">
+        <option value="" disabled="disabled" selected="selected">Please select a description</option>
+        {% for reason in reasons.all %}
+        <option value="{{ reason.id }}">{{ reason.reason_desc }}</option>
+        {% endfor %}
+        <option value="other">Other</option>
+    </select>
+
+    <select id="trans_acc">
+        <option value="" disabled="disabled" selected="selected">Please select an account</option>
+        {% for account in accounts.all %}
+        <option value="{{ account.id }}">{{ reason.name }}</option>
+        {% endfor %}
+    </select>
+
     <input type="submit" value="Add" />
+
 </form>

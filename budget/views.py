@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
 
-from budget.models import Account, Transaction
+from budget.models import Account, Transaction, Reasons
 
 def index(request):
     return render(request, 'budget/index.html')
@@ -17,9 +18,25 @@ def transaction_detail(request, transaction_id):
 
 def transaction_new(request):
 
-    transaction =
-    return render(request, 'budget/transaction_detail.html',
-        {'transaction': transaction})
+    reasons = Reasons.objects
+    accounts = Account.objects
+    return render(request, 'budget/transaction_new.html',
+        {'reasons': reasons, 'accounts': accounts})
+
+def transaction_save(request):
+    try:
+        date = request.POST['trans_date']
+        amount = request.POST['trans_amount']
+        type_db = request.POST['type_db']
+        type_cr = request.POST['type_cr']
+        desc = request.POST['trans_desc']
+        acc = request.POST['trans_acc']
+        new_trans
+    except (KeyError):
+        return render(request, 'budget/transaction_new.html',
+            {'error_message': 'Error'})
+    return HttpResponseRedirect(reverse('budget:transaction_detail',
+        args=(new_trans.id,)))
 
 def account_list(request):
     return render(request, 'budget/account_list.html')
