@@ -45,3 +45,15 @@ def account_transactions(request, account_id):
     # Lists all the transactions for an account, use the name in the URL
     # or the DB ID?
     return render(request, 'budget/account_transactions.html')
+
+def account_new(request):
+    return render(request, 'budget/account_new.html')
+
+def account_save(request):
+    pass
+
+def reason_new(request):
+    return render(request, 'budget/reason_new.html')
+
+def reason_save(request):
+    pass
