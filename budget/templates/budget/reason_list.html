@@ -1,0 +1,9 @@
+{% if reasons %}
+    <ul>
+    {% for reason in reasons %}
+    <li>{{ reason.reason_desc }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No spending reasons added yet!</p>
+{% endif %}

@@ -17,4 +17,8 @@ urlpatterns = patterns('',
     url(r'^transaction/new/$', views.transaction_new, name='transaction_new'),
     # /budget/transaction/save
     url(r'^transaction/save/$', views.transaction_save, name='transaction_save'),
+    # /reasons/
+    url(r'^reasons/$', views.reason_list, name='reason_list'),
+    # /reasons/new/
+    url(r'^reasons/new/$', views.reason_new, name='reason_new'),
 )

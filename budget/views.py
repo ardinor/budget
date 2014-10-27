@@ -4,7 +4,9 @@ from django.http import HttpResponseRedirect
 from budget.models import Account, Transaction, Reasons
 
 def index(request):
-    return render(request, 'budget/index.html')
+    latest_transactions = Transaction.objects.order_by('-date')[:10]
+    context = {'latest_transactions': latest_transactions}
+    return render(request, 'budget/index.html', context)
 
 def transaction_list(request):
     latest_transactions = Transaction.objects.order_by('-date')[:20]
@@ -51,6 +53,11 @@ def account_new(request):
 
 def account_save(request):
     pass
+
+def reason_list(request):
+    reasons = Reasons.objects.all()
+    context = {'reasons': reasons}
+    return render(request, 'budget/reason_list.html', context)
 
 def reason_new(request):
     return render(request, 'budget/reason_new.html')

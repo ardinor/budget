@@ -1,0 +1,13 @@
+<p><a href="{% url 'budget:transaction_new' %}">Record new transactions</a> |
+<a href="{% url 'budget:account_list' %}">Manage accounts</a> | <a href="{% url 'budget:reason_list' %}">Manage spending reasons</a> </p>
+<h4>Recent transactions</h4>
+{% if latest_transactions %}
+    <ul>
+    {% for transaction in latest_transactions %}
+        <li><a href="{% url 'budget:transaction_detail' transaction.id %}">{{ transaction.get_type_display }} of {{ transaction.amount }} on {{ transaction.date }} for {{ transaction.reason }}</a></li>
+    {% endfor %}
+    </ul>
+    <p><a href="{% url 'budget:transaction_list' %}">More transactions...</a></p>
+{% else %}
+    <p>No transactions yet!</p>
+{% endif %}
