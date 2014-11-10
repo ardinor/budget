@@ -1,6 +1,16 @@
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% extends "base.html" %}
 
+{% block title %}{% endblock %}
+
+{% if error_message %}
+{% block messages %}
+<p><strong>{{ error_message }}</strong></p>
+{% endblock %}
+{% endif %}
+
+{% block content %}
 <form action="{% url 'budget:account_save' %}" method="post">
     {% csrf_token %}
 
 </form>
+{% endblock %}

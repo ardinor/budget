@@ -1,3 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
 {% if reasons %}
     <ul>
     {% for reason in reasons %}
@@ -7,3 +13,5 @@
 {% else %}
     <p>No spending reasons added yet!</p>
 {% endif %}
+
+{% endblock %}
