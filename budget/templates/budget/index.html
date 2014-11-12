@@ -4,8 +4,6 @@
 
 {% block content %}
 
-<p><a href="{% url 'budget:transaction_new' %}">Record new transactions</a> |
-<a href="{% url 'budget:account_list' %}">Manage accounts</a> | <a href="{% url 'budget:reason_list' %}">Manage spending reasons</a> </p>
 <h4>Recent transactions</h4>
 {% if latest_transactions %}
     <ul>
