@@ -9,36 +9,75 @@
 {% endif %}
 
 {% block content %}
+<div class="row">
+    <div class="col-sm-offset-2 col-sm-10">
+        <h4>Record a new transaction</h4>
+    </div>
+</div>
 
-<form action="{% url 'budget:transaction_save' %}" method="post">
+<form role="form" class="form-horizontal" action="{% url 'budget:transaction_save' %}" method="post">
     {% csrf_token %}
-    <input name="trans_date" id="trans_date" type="text">
-    <label for="trans_date">Date</label>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="trans_date">Date</label>
+        <div class="col-sm-4">
+            <input class="form-control" name="trans_date" id="trans_date" type="text">
+        </div>
+    </div>
 
-    <input type="radio" name="trans_type" id="type_db" value="DB" />
-    <label for="type_db">Debit</label>
-    <input type="radio" name="trans_type" id="type_cr" value="CR" />
-    <label for="type_cr">Credit</label>
+    <div class="form-group">
+        <div class="col-sm-offset-2">
+            <label class="radio-inline">
+            <input type="radio" name="trans_type" id="type_db" value="DB" />
+            Debit</label>
 
-    <input name="trans_amount" id="trans_amount" type="text">
-    <label for="trans_amount">Amount</label>
+            <label class="radio-inline">
+            <input type="radio" name="trans_type" id="type_cr" value="CR" />
+            Credit</label>
+        </div>
+    </div>
 
-    <select id="trans_desc">
-        <option value="" disabled="disabled" selected="selected">Please select a description</option>
-        {% for reason in reasons.all %}
-        <option value="{{ reason.id }}">{{ reason.reason_desc }}</option>
-        {% endfor %}
-        <option value="other">Other</option>
-    </select>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="trans_amount">Amount</label>
+        <div class="col-sm-4 ">
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input class="form-control" name="trans_amount" id="trans_amount" type="text">
+            </div>
+        </div>
+    </div>
 
-    <select id="trans_acc">
-        <option value="" disabled="disabled" selected="selected">Please select an account</option>
-        {% for account in accounts.all %}
-        <option value="{{ account.id }}">{{ reason.name }}</option>
-        {% endfor %}
-    </select>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="trans_desc">Description</label>
+        <div class="col-sm-4">
+            <select class="form-control" id="trans_desc">
+                <option value="" disabled="disabled" selected="selected">Please select a description</option>
+                {% for reason in reasons.all %}
+                <option value="{{ reason.id }}">{{ reason.reason_desc }}</option>
+                {% endfor %}
+                <option value="other">Other</option>
+            </select>
+        </div>
+    </div>
 
-    <input type="submit" value="Add" />
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="trans_acc">Account</label>
+        <div class="col-sm-4">
+            <select class="form-control" id="trans_acc">
+                <option value="" disabled="disabled" selected="selected">Please select an account</option>
+                {% for account in accounts.all %}
+                <option value="{{ account.id }}">{{ reason.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <!--<input type="submit" value="Add" />-->
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+
 
 </form>
 

@@ -11,7 +11,7 @@
         <li><a href="{% url 'budget:transaction_detail' transaction.id %}">{{ transaction.get_type_display }} of {{ transaction.amount }} on {{ transaction.date }} for {{ transaction.reason }}</a></li>
     {% endfor %}
     </ul>
-    <p><a href="{% url 'budget:transaction_list' %}">More transactions...</a></p>
+    <a href="{% url 'budget:transaction_list' %}">More transactions...</a>
 {% else %}
     <p>No transactions yet!</p>
 {% endif %}

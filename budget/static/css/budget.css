@@ -1,5 +1,5 @@
 .budget-nav {
-    background-color: #F6BB42;
+    background-color: #48CFAD;
 }
 
 .budget-nav > li > a {
@@ -7,7 +7,7 @@
 }
 
 .budget-nav > li > a:focus, .budget-nav > li > a:hover {
-    background-color: #FFCE54;
+    background-color: #37BC9B;
 }
 
 .header-row {
