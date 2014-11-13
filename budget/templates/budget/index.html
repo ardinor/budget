@@ -4,16 +4,43 @@
 
 {% block content %}
 
-<h4>Recent transactions</h4>
 {% if latest_transactions %}
-    <ul>
-    {% for transaction in latest_transactions %}
-        <li><a href="{% url 'budget:transaction_detail' transaction.id %}">{{ transaction.get_type_display }} of {{ transaction.amount }} on {{ transaction.date }} for {{ transaction.reason }}</a></li>
-    {% endfor %}
-    </ul>
-    <a href="{% url 'budget:transaction_list' %}">More transactions...</a>
-{% else %}
-    <p>No transactions yet!</p>
+<div class="panel panel-info">
+    <div class="panel-heading">Recent transactions</div>
+    <div class="panel-body trans-panel-body">
+        <ul>
+        {% for transaction in latest_transactions %}
+            <li><a href="{% url 'budget:transaction_detail' transaction.id %}">{{ transaction.get_type_display }} of {{ transaction.amount }} on {{ transaction.date }} for {{ transaction.reason }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="panel-footer trans-panel-footer">
+        <a href="{% url 'budget:transaction_list' %}">More transactions...</a>
+    </div>
+</div>
 {% endif %}
+
+<h4>Account Summary</h4>
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Account</th>
+            <th>Balance</th>
+            <th>Last Activity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Transaction</td>
+            <td>$30.00</td>
+            <td>11/11/14</td>
+        </tr>
+        <tr>
+            <td>Savings</td>
+            <td>$90.00</td>
+            <td>07/11/14</td>
+        </tr>
+    </tbody>
+</table>
 
 {% endblock %}
