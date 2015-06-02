@@ -13,6 +13,10 @@ urlpatterns = patterns('',
     url(r'^accounts/$', views.account_list, name='account_list'),
     # /budget/accounts/<number>
     url(r'^accounts/(?P<account_id>\d+)/$', views.account_transactions, name='account_transactions'),
+    # /budget/accounts/new
+    url(r'^accounts/new/$', views.account_new, name='account_new'),
+    # /budget/accounts/save
+    url(r'^accounts/save/$', views.account_save, name='account_save'),
     # /budget/transaction/new
     url(r'^transaction/new/$', views.transaction_new, name='transaction_new'),
     # /budget/transaction/save

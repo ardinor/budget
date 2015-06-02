@@ -3,4 +3,21 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+{% if accounts %}
+<div class="panel panel-info">
+    <div class="panel-heading">Recent transactions</div>
+    <div class="panel-body trans-panel-body">
+        <ul>
+        {% for transaction in latest_transactions %}
+            <li><a href="{% url 'budget:transaction_detail' transaction.id %}">{{ transaction.get_type_display }} of {{ transaction.amount }} on {{ transaction.date }} for {{ transaction.reason }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="panel-footer trans-panel-footer">
+        <a href="{% url 'budget:transaction_list' %}">More transactions...</a>
+    </div>
+</div>
+{% else %}
+<p>You don't have any accounts yet, let's <a href="{% url 'budget:account_new' %}">make one.</a></p>
+{% endif %}
 {% endblock %}

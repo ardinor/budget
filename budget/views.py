@@ -41,7 +41,9 @@ def transaction_save(request):
         args=(new_trans.id,)))
 
 def account_list(request):
-    return render(request, 'budget/account_list.html')
+    account_list = Account.objects.all()
+    context = {'accounts': account_list}
+    return render(request, 'budget/account_list.html', context)
 
 def account_transactions(request, account_id):
     # Lists all the transactions for an account, use the name in the URL
