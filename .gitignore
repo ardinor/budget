@@ -168,6 +168,7 @@ pip-log.txt
 
 #No db
 *.db
+*.sqlite3
 
 #Don't bring up the web assets cache
 .webassets-cache/
