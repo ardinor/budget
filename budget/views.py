@@ -66,7 +66,18 @@ def account_new(request):
                   {'account_types': account_types})
 
 def account_save(request):
-    pass
+    try:
+        name = request.POST['acc_name']
+        bank = request.POST['acc_bank']
+        acc_type = request.POST['acc_type']
+        amount = request.POST['acc_amount']
+        new_accnt = Account(name=name, bank=bank, type=acc_type,
+                            balance=amount)
+    except (KeyError):
+        return render(request, 'budget/account_new.html',
+            {'error_message': 'Error'})
+    return HttpResponseRedirect(reverse('budget:account_transactions',
+        args=(new_accnt.id,)))
 
 def reason_list(request):
     reasons = Reasons.objects.all()
