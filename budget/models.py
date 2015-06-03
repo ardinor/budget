@@ -30,14 +30,14 @@ class AccountTypes(models.Model):
 
 # Savings, Transaction etc.
 class Account(models.Model):
-    type = models.ForeignKey(AccountTypes)
+    acc_type = models.ForeignKey(AccountTypes)
     name = models.CharField(max_length=100)
     bank = models.CharField(max_length=100)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     @python_2_unicode_compatible
     def __str__(self):
-        return '%s account "%s"' % (self.type, self.name)
+        return '%s account "%s"' % (self.acc_type, self.name)
 
     class Meta:
         verbose_name = "Account"
@@ -55,7 +55,7 @@ class Transaction(models.Model):
     )
 
     date = models.DateField('Date')
-    type = models.CharField(max_length=2, choices=TRANSACTION_TYPES,
+    trans_type = models.CharField(max_length=2, choices=TRANSACTION_TYPES,
         default=DEBIT_TRANSACTION)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     reason = models.ForeignKey(Reasons)
@@ -65,7 +65,7 @@ class Transaction(models.Model):
     @python_2_unicode_compatible
     def __str__(self):
         return '%s - %s of %s' % (self.date.strftime('%m/%d/%Y'),
-            self.get_type_display(),
+            self.get_trans_type_display(),
             locale.currency(self.amount))
 
     class Meta:

@@ -7,7 +7,7 @@ admin.site.register(AccountTypes)
 admin.site.register(Account)
 
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ('date', 'type', 'amount', 'reason')
+    list_display = ('date', 'trans_type', 'amount', 'reason')
     list_filter = ['date']
     search_fields = ['reason']
     date_hierarchy = 'date'
@@ -15,7 +15,7 @@ class TransactionAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('date',)}),
         #(None, {'fields': ('account')}),
-        ('Details', {'fields': ('account', ('type', 'amount', 'reason'), 'reason_other')}),
+        ('Details', {'fields': ('account', ('trans_type', 'amount', 'reason'), 'reason_other')}),
         #(None, {'fields': ('reason_other'), 'classes': ['collapse']}),  #classes adds css classes
     )
 
