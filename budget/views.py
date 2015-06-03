@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 
-from budget.models import Account, Transaction, Reasons
+from budget.models import Account, Transaction, Reasons, AccountTypes
 
 def index(request):
     latest_transactions = Transaction.objects.order_by('-date')[:10]
@@ -51,7 +51,9 @@ def account_transactions(request, account_id):
     return render(request, 'budget/account_transactions.html')
 
 def account_new(request):
-    return render(request, 'budget/account_new.html')
+    account_types = AccountTypes.objects.all()
+    return render(request, 'budget/account_new.html',
+                  {'account_types': account_types})
 
 def account_save(request):
     pass
