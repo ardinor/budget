@@ -5,15 +5,25 @@ from budget.models import Account, Transaction, Reasons, AccountTypes
 
 def index(request):
     latest_transactions = Transaction.objects.order_by('-date')[:10]
-    context = {'latest_transactions': latest_transactions}
-    return render(request, 'budget/index.html', context)
+    return render(request, 'budget/index.html',
+                  {'latest_transactions': latest_transactions})
 
 def transaction_list(request):
+
+    """
+    Lists the first 20 available transactions for the user
+    """
+
     latest_transactions = Transaction.objects.order_by('-date')[:20]
-    context = {'latest_transactions': latest_transactions}
-    return render(request, 'budget/transaction_list.html', context)
+    return render(request, 'budget/transaction_list.html',
+                  {'latest_transactions': latest_transactions})
 
 def transaction_detail(request, transaction_id):
+
+    """
+    Gets details for the given transaction id, if it exists
+    """
+
     transaction = get_object_or_404(Transaction, pk=transaction_id)
     return render(request, 'budget/transaction_detail.html',
         {'transaction': transaction})
@@ -23,7 +33,7 @@ def transaction_new(request):
     reasons = Reasons.objects
     accounts = Account.objects
     return render(request, 'budget/transaction_new.html',
-        {'reasons': reasons, 'accounts': accounts})
+                  {'reasons': reasons, 'accounts': accounts})
 
 def transaction_save(request):
     try:
@@ -42,8 +52,8 @@ def transaction_save(request):
 
 def account_list(request):
     account_list = Account.objects.all()
-    context = {'accounts': account_list}
-    return render(request, 'budget/account_list.html', context)
+    return render(request, 'budget/account_list.html',
+                  {'accounts': account_list})
 
 def account_transactions(request, account_id):
     # Lists all the transactions for an account, use the name in the URL
@@ -60,8 +70,8 @@ def account_save(request):
 
 def reason_list(request):
     reasons = Reasons.objects.all()
-    context = {'reasons': reasons}
-    return render(request, 'budget/reason_list.html', context)
+    return render(request, 'budget/reason_list.html',
+                  {'reasons': reasons})
 
 def reason_new(request):
     return render(request, 'budget/reason_new.html')
