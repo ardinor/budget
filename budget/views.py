@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 
 from budget.models import Account, Transaction, Reasons, AccountTypes
+from budget.forms import NewAccountForm
 
 def index(request):
     latest_transactions = Transaction.objects.order_by('-date')[:10]
@@ -43,7 +44,7 @@ def transaction_save(request):
         type_cr = request.POST['type_cr']
         desc = request.POST['trans_desc']
         acc = request.POST['trans_acc']
-        new_trans
+        new_trans = Transaction(date=date, )
     except (KeyError):
         return render(request, 'budget/transaction_new.html',
             {'error_message': 'Error'})
@@ -61,21 +62,27 @@ def account_transactions(request, account_id):
     return render(request, 'budget/account_transactions.html')
 
 def account_new(request):
-    account_types = AccountTypes.objects.all()
+    #account_types = AccountTypes.objects.all()
+    form = NewAccountForm()
     return render(request, 'budget/account_new.html',
-                  {'account_types': account_types})
+                  {'form': form})
 
 def account_save(request):
-    try:
-        name = request.POST['acc_name']
-        bank = request.POST['acc_bank']
-        acc_type = request.POST['acc_type']
-        amount = request.POST['acc_amount']
-        new_accnt = Account(name=name, bank=bank, type=acc_type,
-                            balance=amount)
-    except (KeyError):
-        return render(request, 'budget/account_new.html',
-            {'error_message': 'Error'})
+
+    if request.method == 'POST':
+        form = NewAccountForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            bank = form.cleaned_data['bank']
+            acc_type = form.cleaned_data['acc_type']
+            amount = form.cleaned_data['balance']
+            new_accnt = Account(name=name, bank=bank, type=acc_type,
+                                balance=amount)
+
+        else:
+            return render(request, 'budget/account_new.html',
+                          {'error_message': 'Error'})
+
     return HttpResponseRedirect(reverse('budget:account_transactions',
         args=(new_accnt.id,)))
 
