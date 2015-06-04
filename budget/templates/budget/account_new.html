@@ -15,13 +15,22 @@
     </div>
 </div>
 
-{% load crispy_forms_tags %}
-{% crispy form %}
+<form role="form" class="form-horizontal" action="{% url 'budget:account_save' %}" method="post">
+    {% csrf_token %}
 
-{% endblock %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="acc_name">Account Name</label>
+        <div class="col-sm-4">
+            <input class="form-control" name="acc_name" id="acc_name" type="text">
+        </div>
+    </div>
 
-<!--
-
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="acc_bank">Bank Name</label>
+        <div class="col-sm-4">
+            <input class="form-control" name="acc_bank" id="acc_bank" type="text">
+        </div>
+    </div>
 
     <div class="form-group">
         <label class="col-sm-2 control-label" for="acc_type">Account Type</label>
@@ -48,5 +57,9 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">Submit</button>
+        <button type="cancel" class="btn btn-default">Cancel</button>
         </div>
-    </div>-->
+    </div>
+</form>
+
+{% endblock %}
