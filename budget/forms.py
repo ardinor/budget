@@ -4,4 +4,4 @@ from budget.models import Account
 class NewAccountForm(ModelForm):
     class Meta:
         model = Account
-        fields = ['name', 'bank', 'type', 'balance']
+        fields = ['name', 'bank', 'acc_type', 'balance']
