@@ -70,18 +70,19 @@ def account_new(request):
 def account_save(request):
 
     if request.method == 'POST':
-        form = NewAccountForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            bank = form.cleaned_data['bank']
-            acc_type = form.cleaned_data['acc_type']
-            amount = form.cleaned_data['balance']
+        try:
+            name = request.POST['acc_name']
+            bank = request.POST['acc_bank']
+            acc_type = request.POST['acc_type']
+            amount = request.POST['acc_amount']
             new_accnt = Account(name=name, bank=bank, type=acc_type,
                                 balance=amount)
-
-        else:
+        except (KeyError):
             return render(request, 'budget/account_new.html',
-                          {'error_message': 'Error'})
+                {'error_message': 'Error'})
+        # else:
+        #     return render(request, 'budget/account_new.html',
+        #                   {'error_message': 'Error'})
 
     return HttpResponseRedirect(reverse('budget:account_transactions',
         args=(new_accnt.id,)))
