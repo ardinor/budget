@@ -57,7 +57,7 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">Submit</button>
-        <button type="cancel" class="btn btn-default">Cancel</button>
+        <button type="cancel" class="btn btn-default" onclick="window.location='{% url 'budget:account_list' %}';return false;">Cancel</button>
         </div>
     </div>
 </form>
