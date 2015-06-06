@@ -38,19 +38,23 @@ def transaction_new(request):
                   {'reasons': reasons, 'accounts': accounts})
 
 def transaction_save(request):
-    try:
-        date = request.POST['trans_date']
-        amount = request.POST['trans_amount']
-        type_db = request.POST['type_db']
-        type_cr = request.POST['type_cr']
-        desc = request.POST['trans_desc']
-        acc = request.POST['trans_acc']
-        new_trans = Transaction(date=date, )
-    except (KeyError):
-        return render(request, 'budget/transaction_new.html',
-            {'error_message': 'Error'})
-    return HttpResponseRedirect(reverse('budget:transaction_detail',
-        args=(new_trans.id,)))
+
+    if request.method == 'POST':
+        try:
+            date = request.POST['trans_date']
+            amount = request.POST['trans_amount']
+            type_db = request.POST['type_db']
+            type_cr = request.POST['type_cr']
+            desc = request.POST['trans_desc']
+            acc = request.POST['trans_acc']
+            new_trans = Transaction(date=date, )
+        except (KeyError):
+            return render(request, 'budget/transaction_new.html',
+                {'error_message': 'Error'})
+        return HttpResponseRedirect(reverse('budget:transaction_detail',
+            args=(new_trans.id,)))
+
+    return HttpResponseRedirect(reverse('budget:transaction_new')
 
 def account_list(request):
     account_list = Account.objects.all()
@@ -85,8 +89,10 @@ def account_save(request):
         #     return render(request, 'budget/account_new.html',
         #                   {'error_message': 'Error'})
 
-    return HttpResponseRedirect(reverse('budget:account_transactions',
-        args=(new_accnt.id,)))
+        return HttpResponseRedirect(reverse('budget:account_transactions',
+            args=(new_accnt.id,)))
+
+    return HttpResponseRedirect(reverse('budget:account_new')
 
 def reason_list(request):
     reasons = Reasons.objects.all()
