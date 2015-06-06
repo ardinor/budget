@@ -76,7 +76,7 @@ def account_save(request):
             bank = request.POST['acc_bank']
             acc_type = request.POST['acc_type']
             amount = request.POST['acc_amount']
-            new_accnt = Account(name=name, bank=bank, type=acc_type,
+            new_accnt = Account(name=name, bank=bank, acc_type=acc_type,
                                 balance=amount)
         except (KeyError):
             return render(request, 'budget/account_new.html',
